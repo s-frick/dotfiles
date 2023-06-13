@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sudo dnf install git stow curl -y
+sudo dnf install git stow curl gcc -y
 
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
 
