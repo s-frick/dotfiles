@@ -1,0 +1,11 @@
+[user]
+	name = sfrick
+	email = s.frick@reply.de
+[credential]
+	helper = store
+[pull]
+	ff = only
+[core]
+	autocrlf = input
+[init]
+	defaultBranch = main
