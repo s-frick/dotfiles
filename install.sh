@@ -4,7 +4,7 @@ sudo dnf install git stow curl gcc -y
 
 sh <(curl -L https://nixos.org/nix/install) --no-daemon
 
-\. /home/sfrick/.nix-profile/etc/profile.d/nix.sh
+source /home/sfrick/.nix-profile/etc/profile.d/nix.sh
 
 NIXPKGS_ALLOW_UNFREE=1 nix-env -iA \
 	nixpkgs.neovim \
