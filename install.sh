@@ -11,16 +11,16 @@ NIXPKGS_ALLOW_UNFREE=1 nix-env -iA \
 	nixpkgs.spotify \
 	nixpkgs.tmux \
 	nixpkgs.tmuxinator \
-	nixpkgs.grim \ 
-nixpkgs.wlogout \ 
-nixpkgs.rofi \ 
-nixpkgs.waybar \ 
-nixpkgs.neofetch \ 
-nixpkgs.fnm \ 
-nixpkgs.python311 \ 
-nixpkgs.python311Packages.pip
-nixpkgs.nvm \ 
-nixpkgs.rustup
+	nixpkgs.grim \
+	nixpkgs.wlogout \
+	nixpkgs.rofi \
+	nixpkgs.waybar \
+	nixpkgs.neofetch \
+	nixpkgs.fnm \
+	nixpkgs.python311 \
+	nixpkgs.python311Packages.pip
+	nixpkgs.nvm \
+	nixpkgs.rustup
 
 fnm install 16
 rustup default stable

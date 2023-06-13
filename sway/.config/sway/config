@@ -17,7 +17,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Downloads/1011899.jpg fill
+# output * bg ~/Downloads/1011899.jpg fill
 #
 # Example configuration:
 #
@@ -79,7 +79,7 @@ input "1739:52781:MSFT0001:00_06CB:CE2D_Touchpad" {
 
 ### Key bindings
 #Lockscreen enable sleep 
-set $lock_bg ~/Downloads/1011899.jpg
+#set $lock_bg ~/Downloads/1011899.jpg
 set $lock 'swaylock -f -i $lock_bg'
 
 bindswitch --reload --locked lid:on exec $lock
