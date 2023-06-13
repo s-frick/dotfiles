@@ -141,15 +141,15 @@ linters.setup {
 -- local debuggers = require "lua.lvim.core.dap"
 lvim.builtin.dap.active = true
 local dap = require('dap')
-dap.configuration.java = {
-  {
-    type = 'java',
-    request = 'attach',
-    name = "Debug (Attach) - Remote",
-    hostName = "127.0.0.1",
-    port = 5005,
-  },
-}
+-- dap.configuration.java = {
+--   {
+--     type = 'java',
+--     request = 'attach',
+--     name = "Debug (Attach) - Remote",
+--     hostName = "127.0.0.1",
+--     port = 5005,
+--   },
+-- }
 
 -- Remappings
 -- lvim.builtin.which_key.mappings["/"] = {
