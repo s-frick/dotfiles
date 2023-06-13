@@ -26,4 +26,9 @@ NIXPKGS_ALLOW_UNFREE=1 nix-env -iA \
 fnm install 16
 rustup default stable
 
+stow *
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+
 LV_BRANCH='release-1.3/neovim-0.9' bash <(curl -s https://raw.githubusercontent.com/LunarVim/LunarVim/release-1.3/neovim-0.9/utils/installer/install.sh) -y
+
+stow -R *
