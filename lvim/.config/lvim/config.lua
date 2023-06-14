@@ -13,11 +13,9 @@ vim.opt.relativenumber = true     -- relative line numbers
 vim.opt.wrap = true               -- wrap lines
 
 
-
 -- use treesitter folding
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-
 
 lvim.plugins = {
   "mfussenegger/nvim-jdtls",
@@ -67,7 +65,44 @@ lvim.plugins = {
       }
     end
   },
-
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- surrounds = {
+        --   ["F"] = {
+        --     add = function()
+        --       local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+        --       return {
+        --         {
+        --           "{",
+        --           "  " .. clipboard,
+        --           "",
+        --         },
+        --         {
+        --           "}",
+        --         },
+        --       }
+        --     end,
+        --     find = "%b[]%b()",
+        --     delete = "^(%[)().-(%]%b())()$",
+        --     change = {
+        --       target = "^()()%b[]%((.-)()%)$",
+        --       replacement = function()
+        --         local clipboard = vim.fn.getreg("+"):gsub("\n", "")
+        --         return {
+        --           { "" },
+        --           { clipboard },
+        --         }
+        --       end,
+        --     },
+        --   },
+        -- },
+      })
+    end
+  },
   {
     "iamcco/markdown-preview.nvim",
     build = "cd app && npm install",
@@ -156,5 +191,9 @@ local dap = require('dap')
 --   "<Plug>(comment_toggle_linewise_current)", "Toggle linewise"
 -- }
 -- Centers cursor when moving 1/2 page down
+lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
+lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
+lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
+lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
 lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
 lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
