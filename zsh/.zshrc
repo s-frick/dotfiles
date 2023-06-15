@@ -100,6 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ll='ls -la'
+alias gg='lazygit'
 # alias vb='fd --base-directory $1 --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
 
 function ide() {
