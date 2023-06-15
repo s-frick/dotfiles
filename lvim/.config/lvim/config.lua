@@ -163,7 +163,7 @@ formatters.setup {
   { command = "isort",              filetypes = { "python" } },
   { command = "shfmt",              filetypes = { "sh" } },
   { command = "terraform_fmt",      filetypes = { "terraform" } },
-  { command = "prettier",           filetypes = { "typescript", "typescriptreact" } },
+  { command = "prettier",           filetypes = { "typescript", "typescriptreact", "markdown", "json" } },
   { command = "google-java-format", filetypes = { "java" } }
 }
 
