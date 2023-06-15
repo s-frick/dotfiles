@@ -6,9 +6,9 @@
 	"margin-left": 2, // Waybar left margin
 	"margin-right": 2, // Waybar right margin
 	"spacing": 4, // Gaps between modules (4px)
-	"modules-left": ["custom/leftseparator", "sway/workspaces", "custom/middleseparator", "custom/spotify"],
-	"modules-center": ["sway/window", "custom/notification"],
-	"modules-right": ["gamemode", "cpu", "temperature", "memory", "disk", "network", "bluetooth", "pulseaudio", "idle_inhibitor", "tray", "clock", "custom/rightseparator"],
+	"modules-left": ["custom/leftseparator", "sway/workspaces", "custom/middleseparator"],
+	"modules-center": ["sway/window", "custom/notification", "pulseaudio"],
+	"modules-right": ["gamemode", "cpu", "temperature", "memory", "disk", "network", "bluetooth", "idle_inhibitor", "tray", "clock", "custom/rightseparator"],
 	// Modules configuration
 	"sway/workspaces": {
 		"format": "{name}",
@@ -34,7 +34,7 @@
 		"tooltip-format-deactivated": "{status}"
 	},
 	"sway/window": {
-		"format": "{shell} {app_id}",
+		"format": "{app_id}",
 		"max-length": 50
 	},
 	"tray": {
@@ -166,19 +166,20 @@
 		"on-scroll-down": "bluetoothctl power off",
 	},
 	"pulseaudio": {
-		"format": "{icon}",
+		"format": "{icon} {format_source}",
 		"tooltip-format": "{icon} {volume}% {format_source}",
 		"format-bluetooth": " {icon}",
 		"format-bluetooth-muted": "",
 		"format-muted": "",
-		"format-source": " {volume}%",
+		"format-source": "",
 		"format-source-muted": "",
 		"ignored-sinks": ["Easy Effects Sink"],
 		"format-icons": {
 			"default": ["", "", ""]
 		},
-		"on-click": "$TERM -e pulsemixer",
-		"on-click-right": "killall pulsemixer",
+		// "on-click": "$TERM -e pulsemixer",
+		"on-click": "pavucontrol",
+		"on-click-right": "amixer set Capture toggle",
 		"on-click-middle": "$HOME/.config/waybar/scripts/bar_volume.sh mute",
 		"on-scroll-up": "$HOME/.config/waybar/scripts/bar_volume.sh raise 1",
 		"on-scroll-down": "$HOME/.config/waybar/scripts/bar_volume.sh lower 1"
