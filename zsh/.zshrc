@@ -103,11 +103,20 @@ alias ll='ls -la'
 alias gg='lazygit'
 # alias vb='fd --base-directory $1 --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
 
+function start() {
+  if [ -e "$PWD/start.sh" ]; then ./start.sh; else echo "no start script exists in this directory"; fi
+}
+function format() {
+  if [ -e "$PWD/format.sh" ]; then ./format.sh; else echo "no format script exists in this directory"; fi
+}
 function ide() {
   if [ -e "$PWD/ide.sh" ]; then ./ide.sh; else echo "no ide startup script exists in this directory"; fi
 }
 function v() { 
   fd --base-directory "$1" --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs -I {} nvim "$1/"{}
+}
+function p() { 
+  fd --base-directory "$1" --type d --hidden --exclude .git | fzf-tmux -p --reverse | xargs -I {} nvim "$1/"{}
 }
 function cdf() {
   cd "$1/$(fd --base-directory "$1" --type d --hidden --exclude .git | fzf-tmux -p --reverse)"
