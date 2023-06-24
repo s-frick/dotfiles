@@ -3,7 +3,7 @@
 -- Forum: https://www.reddit.com/r/lunarvim/
 -- Discord: https://discord.com/invite/Xb9B4Ny
 
-lvim.transparent_window = true
+-- lvim.transparent_window = true
 lvim.format_on_save.enabled = true
 vim.opt.cmdheight = 2             -- more space in the neovim command line for displaying messages
 vim.opt.guifont = "monospace:h17" -- the font used in graphical neovim applications
@@ -18,6 +18,7 @@ vim.opt.wrap = true               -- wrap lines
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 lvim.plugins = {
+  "ThePrimeagen/vim-be-good",
   "mfussenegger/nvim-jdtls",
   "olexsmir/gopher.nvim",
   "leoluz/nvim-dap-go",
@@ -111,12 +112,26 @@ lvim.plugins = {
       vim.g.mkdp_auto_start = 1
     end,
   },
+  {
+    -- Theme inspired by Atom
+    'navarasu/onedark.nvim',
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require("onedark").setup({
+        style = 'dark',
+        transparent = true,
+      })
+    end,
+  },
+
   "elkowar/yuck.vim"
 }
 -- Skip AutoConfig for java
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "jdtls", "gopls", "marksman" })
 -- lvim.builtin.treesitter.matchup.enable = true
 lvim.builtin.treesitter.rainbow.enable = true
+lvim.colorscheme = "onedark"
 
 require("mason-lspconfig").setup({
   ensure_installed = {
@@ -191,9 +206,5 @@ local dap = require('dap')
 --   "<Plug>(comment_toggle_linewise_current)", "Toggle linewise"
 -- }
 -- Centers cursor when moving 1/2 page down
-lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
-lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
-lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
-lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
 lvim.keys.normal_mode["<C-d>"] = "<C-d>zz"
 lvim.keys.normal_mode["<C-u>"] = "<C-u>zz"
