@@ -1,11 +1,12 @@
 window:
-  opacity: 0.9
+  opacity: 0.95
 colors:
   # Tokyo Night theme, based on both:
   #   https://github.com/ghifarit53/tokyonight-vim
   #   https://github.com/enkia/tokyo-night-vscode-theme
   primary:
-    background: '#1a1b26'
+    # background: '#1a1b26'
+    background: '#262b2e'
     foreground: '#a9b1d6'
 
   # Normal colors
