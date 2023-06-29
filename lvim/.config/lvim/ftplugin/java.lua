@@ -16,7 +16,7 @@ if vim.fn.has "mac" == 1 then
 end
 
 -- Setup Capabilities
-local capabiliwies = require("lvim.lsp").common_capabilities()
+local capabilities = require("lvim.lsp").common_capabilities()
 local extendedClientCapabilities = jdtls.extendedClientCapabilities
 extendedClientCapabilities.resolveAdditionalTextEditsSupport = true
 

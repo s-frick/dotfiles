@@ -129,3 +129,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 if [ -e /home/sfrick/.nix-profile/etc/profile.d/nix.sh ]; then . /home/sfrick/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# opam configuration
+[[ ! -r /home/sfrick/.opam/opam-init/init.zsh ]] || source /home/sfrick/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

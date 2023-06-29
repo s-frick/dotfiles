@@ -100,10 +100,9 @@ bindsym XF86Search exec $menu
 
 bindsym $mod+e exec ~/bin/launch_rofimoji
 bindsym $mod+x exec google-chrome
+bindsym $mod+Shift+x exec brave-browser 
 bindsym $mod+s exec flatpak run com.spotify.Client
-# bindsym $mod+Shift+a exec $term -c "cd ~/git/work/adc/" "&&" "tmuxinator start adc" 
 bindsym $mod+Shift+a exec $term --hold --working-directory "$HOME/git/work/adc/" 
-# -e "tmuxinator start adc"
 
 # Basics:
 #
