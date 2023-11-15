@@ -171,7 +171,7 @@ function vpnkill() {
 
 function adctoken() {
   client_secret=bbbbbbbbb
-   curl -s -X POST -d "grant_type=password&username=user2&password=user2&client_id=apigateway&client_secret=$client_secret" http://sso-adcubum-syrius.team-fin-cur-wv.apps.devv3.clusters.adcubum.com/auth/realms/adcubum-syrius/protocol/openid-connect/token \
+   curl -s -X POST -d "grant_type=password&username=aaaa&password=aaaaa&client_id=apigateway&client_secret=$client_secret" http://fasdljfklsdjfl/openid-connect/token \
      | jq -r '.access_token' \
      | wl-copy
 }
