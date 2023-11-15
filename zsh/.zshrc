@@ -1,5 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH=/home/sfrick/.nimble/bin:$PATH
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:"$HOME/git/tools/vacuum"
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -9,6 +12,21 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+# ZSH_THEME="spaceship"
+
+SPACESHIP_GIT_SHOW=true
+SPACESHIP_GIT_BRANCH_SHOW=true
+SPACESHIP_PROMPT_ASYNC=false
+SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_JAVA_SHOW=false
+SPACESHIP_GOLANG_SHOW=false
+SPACESHIP_PACKAGE_SHOW=false
+SPACESHIP_CHAR_SYMBOL="λ"
+SPACESHIP_CHAR_PREFIX=" "
+SPACESHIP_CHAR_SUFFIX=" -> "
+SPACESHIP_CHAR_SYMBOL_ROOT="#"
+
+SPACESHIP_PROMPT_ORDER=(dir git exec_time line_sep jobs exit_code char)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -70,7 +88,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,23 +122,69 @@ alias gg='lazygit'
 # alias vb='fd --base-directory $1 --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs nvim'
 
 function start() {
-  if [ -e "$PWD/start.sh" ]; then ./start.sh; else echo "no start script exists in this directory"; fi
+  # if [ -e "$PWD/start.sh" ]; then ./start.sh; else echo "no start script exists in this directory"; fi
+  if [ -e "$PWD/Makefile" ]; then make start; elif [ -e "$PWD/start.sh" ]; then ./start.sh; else echo "either a makefile nor a build script exists in this directory"; fi
 }
+alias s='start'
+
+function test() {
+  # if [ -e "$PWD/test.sh" ]; then ./test.sh; else echo "no test script exists in this directory"; fi
+  if [ -e "$PWD/Makefile" ]; then make test; elif [ -e "$PWD/test.sh" ]; then ./test.sh; else echo "either a makefile nor a build script exists in this directory"; fi
+}
+alias t='test'
+
 function format() {
-  if [ -e "$PWD/format.sh" ]; then ./format.sh; else echo "no format script exists in this directory"; fi
+  # if [ -e "$PWD/format.sh" ]; then ./format.sh; else echo "no format script exists in this directory"; fi
+  if [ -e "$PWD/Makefile" ]; then make format; elif [ -e "$PWD/format.sh" ]; then ./format.sh; else echo "either a makefile nor a build script exists in this directory"; fi
 }
+alias f='format'
+
+function build() {
+  if [ -e "$PWD/Makefile" ]; then make build; elif [ -e "$PWD/build.sh" ]; then ./build.sh; else echo "either a makefile nor a build script exists in this directory"; fi
+}
+alias b='build'
+
 function ide() {
   if [ -e "$PWD/ide.sh" ]; then ./ide.sh; else echo "no ide startup script exists in this directory"; fi
 }
+
 function v() { 
   fd --base-directory "$1" --type f --hidden --exclude .git | fzf-tmux -p --reverse | xargs -I {} nvim "$1/"{}
 }
+
 function p() { 
   fd --base-directory "$1" --type d --hidden --exclude .git | fzf-tmux -p --reverse | xargs -I {} nvim "$1/"{}
 }
-function cdf() {
-  cd "$1/$(fd --base-directory "$1" --type d --hidden --exclude .git | fzf-tmux -p --reverse)"
+
+function sd() {
+  z "$1/$(fd --base-directory "$1" --type d --hidden --exclude .git | fzf-tmux -p --reverse)"
 }
+
+function sg() {
+  git=~/git
+  z "$git/$(fd --base-directory "$git" --type d --hidden --exclude .git | fzf-tmux -p --reverse)"
+}
+
+function vpnkill() {
+  nmcli con show --active | awk '{print $1}' | grep "vpn" | xargs /usr/bin/nmcli con down
+}
+
+function adctoken() {
+  client_secret=QV5z7cH7YE14WCH77JatsBQhsFK4WBlm
+   curl -s -X POST -d "grant_type=password&username=user2&password=user2&client_id=apigateway&client_secret=$client_secret" http://sso-adcubum-syrius.team-fin-cur-wv.apps.devv3.clusters.adcubum.com/auth/realms/adcubum-syrius/protocol/openid-connect/token \
+     | jq -r '.access_token' \
+     | wl-copy
+}
+
+function ma(){
+  docker run --rm -it wernight/funbox cmatrix
+}
+
+
+# DOCKER Stuff
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+alias docks='dockerd-rootless > /dev/null 2>&1 &'
+
 
 [ -r ~/.shell.sh ] && source ~/.shell.sh
 
@@ -132,3 +196,28 @@ if [ -e /home/sfrick/.nix-profile/etc/profile.d/nix.sh ]; then . /home/sfrick/.n
 
 # opam configuration
 [[ ! -r /home/sfrick/.opam/opam-init/init.zsh ]] || source /home/sfrick/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# bindkey -v
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# plugins=(
+#   vi-mode
+# )
+# Download Znap, if it's not there yet.
+[[ -r ~/git/tools/zsh-plugins/znap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/git/tools/zsh-plugins/znap
+source ~/git/tools/zsh-plugins/znap/znap.zsh  # Start Znap
+# Zsh plugins
+# znap source marlonrichert/zsh-autocomplete
+# znap source softmoth/zsh-vim-mode
+eval "$(zoxide init zsh)"
+
+
+
+[[ -s "/home/sfrick/.gvm/scripts/gvm" ]] && source "/home/sfrick/.gvm/scripts/gvm"
